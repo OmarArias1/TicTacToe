@@ -1,6 +1,8 @@
 class TicTacToe {
   struct Player {
     char letterplaying[2];
+    bool gamewon{};
+    bool isturn{};
   };
 
   public:
@@ -18,7 +20,7 @@ class TicTacToe {
     bool CheckForWin();
     void PlayTurn();
     void PrintMap() const;
-    void ChoosePlayers();
+    void InitPlayers();
 
     bool _isgamewon;
     std::string _map;
@@ -29,7 +31,7 @@ class TicTacToe {
 
 //what happens when you play tictactoe:
 // take turns
-//map is updated everyturn and we check for a win
+//map is updated everyturn and we check for a wi
 //two players, x and o
 
 

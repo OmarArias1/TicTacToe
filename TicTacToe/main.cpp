@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <limits>
 
 #include "tictactoe.cpp"
 

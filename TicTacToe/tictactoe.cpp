@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <cstdlib>
+#include <ctime>
 
 #include "tictactoe.h"
 
@@ -17,9 +19,12 @@ _map
 
 void TicTacToe::GameRun()
 {
+  //Seed RNG
+  srand(time(0));
+
   PrintGameStartMessage();
   PrintMap();
-  ChoosePlayers();
+  InitPlayers();
   PlayTurn();
 
 }
@@ -35,7 +40,7 @@ void TicTacToe::PrintMap() const
   std::cout << _map;
 }
 
-void TicTacToe::ChoosePlayers() 
+void TicTacToe::InitPlayers() 
 {
   char buffer[2];
 
@@ -51,18 +56,22 @@ void TicTacToe::ChoosePlayers()
   std::cout << '\n';
   std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-  if (_playerone.letterplaying[0] == _playertwo.letterplaying[0]) std::cout << "cannot be playing as same letter\n", ChoosePlayers();
+  if (_playerone.letterplaying[0] == _playertwo.letterplaying[0]) std::cout << "cannot be playing as same letter\n", InitPlayers();
 
   std::cout << "playerone: " << _playerone.letterplaying << '\n' << "playertwo: " << _playertwo.letterplaying << '\n'
-            << "Are these Selections correct?: " << '\n' << "[yes]\n[no]\n\n>";
+            << "Are these Selections correct?: " << "[yes][no]\n\n>";
 
   std::cin.get(buffer, 2);
   std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  //_playerone.letterplaying[1] = 'b';
+
+  //std::cout << _playerone.letterplaying[1] << '\n';
+  //std::cout << _playertwo.letterplaying[1] << '\n';
 
   switch (buffer[0])
   {
     case 'n':
-      ChoosePlayers();
+      InitPlayers();
       break;
     case 'y':
       std::cout << "SELECTIONS LOCKED IN\n";
@@ -70,6 +79,35 @@ void TicTacToe::ChoosePlayers()
     default:
       std::cout << "Imma just assume thats's a yes\n";
   }
+
+  // Choosing who goes first 
+
+  std::cout << "who wants to go first? enter [1] or [2]" << '\n';
+  std::cin.get(buffer, 2);
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+
+  if (buffer[0] == '1')  
+  {
+    std::cout << "Player one is going first\n";
+    _playerone.isturn = true;
+  }
+  else if (buffer[0] == '2') 
+  {
+    std::cout << "Player two will be going first\n";
+    _playertwo.isturn = true;
+  }
+  else
+  {
+    std::cout << "Random player will be chooses to go first\n";
+    std::size_t randnum = rand() % 2 + 1;
+
+    if (randnum == 1) std::cout << "Player one will be going first\n", _playerone.isturn = true;
+    else std::cout << "PLayer two will be going first\n", _playertwo.isturn = true;
+  }
+}
+
+void TicTacToe::PlayTurn() {
 
 }
  
