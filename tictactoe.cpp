@@ -17,6 +17,11 @@ _map
 }
 {}
 
+TicTacToe::~TicTacToe()
+{
+
+}
+
 void TicTacToe::GameRun()
 {
   //Seed RNG
@@ -25,8 +30,6 @@ void TicTacToe::GameRun()
   PrintGameStartMessage();
   PrintMap();
   InitPlayers();
-  PlayTurn();
-
 }
 
 void TicTacToe::PrintGameStartMessage() const 
@@ -58,16 +61,14 @@ void TicTacToe::InitPlayers()
 
   if (_playerone.letterplaying[0] == _playertwo.letterplaying[0]) std::cout << "cannot be playing as same letter\n", InitPlayers();
 
+  //Locking in selections
+
   std::cout << "playerone: " << _playerone.letterplaying << '\n' << "playertwo: " << _playertwo.letterplaying << '\n'
             << "Are these Selections correct?: " << "[yes][no]\n\n>";
 
   std::cin.get(buffer, 2);
   std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-  //_playerone.letterplaying[1] = 'b';
-
-  //std::cout << _playerone.letterplaying[1] << '\n';
-  //std::cout << _playertwo.letterplaying[1] << '\n';
-
+  
   switch (buffer[0])
   {
     case 'n':
@@ -86,6 +87,7 @@ void TicTacToe::InitPlayers()
   std::cin.get(buffer, 2);
   std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
+  // Picking player that gets first move
 
   if (buffer[0] == '1')  
   {
@@ -105,11 +107,21 @@ void TicTacToe::InitPlayers()
     if (randnum == 1) std::cout << "Player one will be going first\n", _playerone.isturn = true;
     else std::cout << "PLayer two will be going first\n", _playertwo.isturn = true;
   }
+
+  // Calling turn for player choosen
+  if (_playerone.isturn) PlayTurn(_playerone);
+  PlayTurn(_playertwo);
 }
 
-void TicTacToe::PlayTurn() {
-
+void TicTacToe::PlayTurn(const Player& plr) {
+  PrintMap();
+  std::cout << "Player " << plr << "turn";
 }
  
 
+std::ostream& operator<<(std::ostream& os, const TicTacToe::Player& plr)
+{
+  std::cout << plr.letterplaying;
+  return os;
+}
 
