@@ -85,7 +85,7 @@ void TicTacToe::InitPlayers()
 
   std::cout << "who wants to go first? enter [1] or [2]" << '\n';
   std::cin.get(buffer, 2);
-  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'), std::cout << std::endl;
 
   // Picking player that gets first move
 
@@ -109,13 +109,28 @@ void TicTacToe::InitPlayers()
   }
 
   // Calling turn for player choosen
-  if (_playerone.isturn) PlayTurn(_playerone);
-  PlayTurn(_playertwo);
+  _playerone.isturn ? PlayTurn(_playerone) : PlayTurn(_playertwo);
 }
 
 void TicTacToe::PlayTurn(const Player& plr) {
+  std::size_t pick{};
+
   PrintMap();
-  std::cout << "Player " << plr << "turn";
+  std::cout << "Player's " << plr << " turn" << '\n';
+
+  std::cout << "Pick where you will be playing (1-9): ";
+  std::cin >> pick;
+
+  while ( !(pick <= 9 && pick >= 1) ) 
+  {
+    std::cout << "You have to pick within the vallid range: ";
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin >> pick;
+  }
+
+  std::cout << "good choice! ";
+
 }
  
 
