@@ -7,10 +7,10 @@ class TicTacToe {
   struct Player {
       char letterplaying[2];
       bool gamewon{};
-      bool isturn{};
-      
-      public: 
-        friend std::ostream& operator<<(std::ostream& os, const Player& plr);
+      bool isturn = false;
+    
+      friend std::ostream& operator<<(std::ostream& os, const Player& plr);
+      void Flip();
   };
 
     //default constructor
@@ -24,16 +24,17 @@ class TicTacToe {
 
     //Helper Member functions
     void PrintGameStartMessage() const;
-    bool CheckForWin();
+    bool CheckForWin(const std::size_t & pick, const Player & plr);
     void PlayTurn(const Player& plr);
+    Player& whoseTurn();
     void PrintMap() const;
     void InitPlayers();
+    void UpdateMap(const std::size_t & pick);
 
     bool _isgamewon;
     std::string _map;
-    char _map_array[5][5];
-    Player _playerone;
-    Player _playertwo;
+    Player _player_one;
+    Player _player_two;
 
 };
 
