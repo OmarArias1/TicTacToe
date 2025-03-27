@@ -6,8 +6,10 @@
 
 #include "tictactoe.h"
 
-TicTacToe::TicTacToe() : _isgamewon{false}, 
-_map(3, std::vector<char>(3, ' '))
+TicTacToe::TicTacToe() : 
+_isgamewon{false},
+_ROWS{3},
+_COLUMNS{3}
 {}
 
 
@@ -34,7 +36,15 @@ void TicTacToe::PrintGameStartMessage() const
 
 void TicTacToe::PrintMap() const
 {
-  std::cout << _map;
+  for (std::size_t i = 0; i < _ROWS; ++i)
+  {
+    for (std::size_t j = 0; j < _COLUMNS; ++j) 
+    {
+      std::cout << _map[_ROWS][_COLUMNS]; 
+    }
+
+    std::cout << '\n';
+  }
 }
 
 
@@ -153,30 +163,32 @@ TicTacToe::Player& TicTacToe::whoseTurn()
 bool TicTacToe::CheckForWin(const std::size_t & pick, const Player & plr)
 {
 
-  for (int i = 0; i < pick; ++i)
-  {
-    _map[i] = plr.letterplaying[0];
-  }
-  switch (pick) 
-  {
-    case 1:
+  // for (int i = 0; i < pick; ++i)
+  // {
+  //   _map[i] = plr.letterplaying[0];
+  // }
+  // switch (pick) 
+  // {
+  //   case 1:
 
-    case 2:
+  //   case 2:
 
-    case 3:
+  //   case 3:
 
-    case 4:
+  //   case 4:
 
-    case 5: 
+  //   case 5: 
 
-    case 6:
+  //   case 6:
 
-    case 7:
+  //   case 7:
 
-    case 8:
+  //   case 8:
 
-    case 9:
-  }
+  //   case 9:
+  // }
+
+  return false;
 }
 
 

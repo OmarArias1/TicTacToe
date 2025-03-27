@@ -1,6 +1,8 @@
 #ifndef TICTACTOE_H
 #define TICTACTOE_H
 
+#include <vector>
+
 class TicTacToe {
   public: 
 
@@ -31,8 +33,10 @@ class TicTacToe {
     void InitPlayers();
     void UpdateMap(const std::size_t & pick);
 
+    const std::size_t _ROWS;
+    const std::size_t _COLUMNS;
     bool _isgamewon;
-    std::string _map;
+    char _map[3][3] = {};
     Player _player_one;
     Player _player_two;
 
