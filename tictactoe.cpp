@@ -40,7 +40,7 @@ void TicTacToe::PrintMap() const
   {
     for (std::size_t j = 0; j < _COLUMNS; ++j) 
     {
-      std::cout << _map[_ROWS][_COLUMNS]; 
+      std::cout << _map[_ROWS-1][_COLUMNS-1]; 
     }
 
     std::cout << '\n';
@@ -53,18 +53,18 @@ void TicTacToe::InitPlayers()
   char buffer[2];
 
   //Plyaer 1 
-  std::cout << "PlayerOne, Choose the letter you'll be playing: ";
-  std::cin.get(_player_one.letterplaying, 2);
+  std::cout << "PlayerOne, Choose the letter you'll be playing (only the first character is choosen): ";
+  std::cin >> _player_one.letterplaying;
   std::cout << '\n';
   std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
   //Player 2
   std::cout << "PlyareTwo, Choose the letter you'll be playing: ";
-  std::cin.get(_player_two.letterplaying, 2);
+  std::cin >> _player_two.letterplaying;
   std::cout << '\n';
   std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-  if (_player_one.letterplaying[0] == _player_two.letterplaying[0]) std::cout << "cannot be playing as same letter\n", InitPlayers();
+  if (_player_one.letterplaying == _player_two.letterplaying) std::cout << "cannot be playing as same letter\n", InitPlayers();
 
   //Locking in selections
 
@@ -140,10 +140,10 @@ void TicTacToe::PlayTurn(const Player& plr) {
   std::cout << "good choice! " << std::endl;
 
   //game loop
-  bool iswon = CheckForWin(pick, plr);
+  // bool iswon = CheckForWin(pick, plr);
 
-  if (iswon) std::cout << "Player " << plr << " has one the game!" << std::endl;
-  else PlayTurn(whoseTurn());
+  // if (iswon) std::cout << "Player " << plr << " has one the game!" << std::endl;
+  // else PlayTurn(whoseTurn());
 }
 
 
@@ -160,36 +160,45 @@ TicTacToe::Player& TicTacToe::whoseTurn()
 }
 
 
-bool TicTacToe::CheckForWin(const std::size_t & pick, const Player & plr)
-{
+// bool TicTacToe::CheckForWin(const std::size_t & pick, const Player & plr)
+// { 
+//   const std::size_t row = (pick -1) / _COLUMNS;
+//   const std::size_t col = (pick -1) % _COLUMNS;
 
-  // for (int i = 0; i < pick; ++i)
-  // {
-  //   _map[i] = plr.letterplaying[0];
-  // }
-  // switch (pick) 
-  // {
-  //   case 1:
+//   _map[row][col] = plr.letterplaying;
 
-  //   case 2:
+//   for (int i = 0; i < pick; ++i)
+//   {
+//     std::cout << i;
+//     for (int j = 0; j < pick; ++j)
+//     {
 
-  //   case 3:
+//     }
+//   }
 
-  //   case 4:
+//   switch (pick) 
+//   {
+//     case 1:
 
-  //   case 5: 
+//     case 2:
 
-  //   case 6:
+//     case 3:
 
-  //   case 7:
+//     case 4:
 
-  //   case 8:
+//     case 5: 
 
-  //   case 9:
-  // }
+//     case 6:
 
-  return false;
-}
+//     case 7:
+
+//     case 8:
+
+//     case 9:
+//   }
+
+//   return false;
+// }
 
 
 std::ostream& operator<<(std::ostream& os, const TicTacToe::Player& plr)

@@ -7,7 +7,7 @@ class TicTacToe {
   public: 
 
   struct Player {
-      char letterplaying[2];
+      char letterplaying;
       bool gamewon{};
       bool isturn = false;
     
@@ -41,11 +41,5 @@ class TicTacToe {
     Player _player_two;
 
 };
-
-//what happens when you play tictactoe:
-// take turns
-//map is updated everyturn and we check for a wi
-//two players, x and o
-
 
 #endif 
