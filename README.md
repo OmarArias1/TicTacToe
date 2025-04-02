@@ -1,7 +1,6 @@
-Tic-Tac-Toe Game
+# Tic-Tac-Toe Game
 
 A simple two-player Tic-Tac-Toe game built in C++.
-Table of Contents
 ## Table of Contents
 - [Overview](#overview)
 - [Files Included](#files-included)
@@ -26,15 +25,15 @@ This is a console-based Tic-Tac-Toe game where two players take turns choosing p
 ### Compilation & Execution
 Using g++
 
-To compile and run the game:
+    To compile and run the game:
 
-g++ main.cpp tictactoe.cpp -o tic_tac_toe
-./tic_tac_toe
+    g++ main.cpp tictactoe.cpp -o tic_tac_toe
+    ./tic_tac_toe
 
-Using MinGW (Windows)
+    Using MinGW (Windows)
 
-g++ main.cpp tictactoe.cpp -o tic_tac_toe.exe
-tic_tac_toe.exe
+    g++ main.cpp tictactoe.cpp -o tic_tac_toe.exe
+    tic_tac_toe.exe
 
 ### Gameplay
 
@@ -62,9 +61,7 @@ tic_tac_toe.exe
 
 ### Known Issues
 
-    The game currently does not handle detecting ties (i.e., when the board is full without a winner).
-
-    Some input handling (like non-numeric values) may need improvements.
+    There are no known issues are of the latest merge.
 
 ### Credits
 
