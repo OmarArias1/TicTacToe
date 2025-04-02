@@ -3,13 +3,15 @@
 #include <limits>
 #include <cstdlib>
 #include <ctime>
+#include <algorithm>
+#include <vector>
 
 #include "tictactoe.h"
 
 TicTacToe::TicTacToe() : 
-_isgamewon{false},
-_ROWS{3},
-_COLUMNS{3}
+  _ROWS{3},
+  _COLUMNS{3},
+  _isgamewon{false}
 {}
 
 
@@ -117,14 +119,24 @@ void TicTacToe::InitPlayers()
   PlayTurn(whoseTurn());
 }
 
-
+std::vector<int> picks;
 void TicTacToe::PlayTurn(const Player& plr) {
   //getting pick & validating input
   std::size_t pick{};
+
   std::cout << "Player's " << plr << " turn" << '\n';
 
   std::cout << "Pick where you will be playing (1-9): ";
   std::cin >> pick;
+
+  auto it = std::find(picks.begin(), picks.end(), pick);
+
+  while (it != picks.end())
+  {
+    std::cout << "Cannot pick a number that has already been played, try again: ";
+    std::cin >> pick;
+    it = std::find(picks.begin(), picks.end(), pick);
+  } 
 
   while ( !(pick <= 9 && pick >= 1) ) 
   {
@@ -134,17 +146,48 @@ void TicTacToe::PlayTurn(const Player& plr) {
     std::cin >> pick;
   }
 
+  picks.push_back(pick);
+
   //positive message
   std::cout << "good choice! " << std::endl;
 
-  //game loop
+  //main game loop
   bool iswon = CheckForWin(pick, plr);
+
   PrintMap();
 
-  if (iswon) std::cout << "Player " << plr << " has one the game!" << std::endl;
-  else PlayTurn(whoseTurn());
+  if (iswon) 
+  {
+    std::cout << "Player " << plr << " has one the game!" << std::endl;
+    return;
+  }
+
+  else 
+  {
+    if (CheckForTie()) 
+    {
+      std::cout << "A tie was made\n\n\n";
+      return;
+    }
+    PlayTurn(whoseTurn());
+  }
 }
 
+bool TicTacToe::CheckForTie() const
+{
+  for (std::size_t i = 0; i < _ROWS; ++i)
+  {
+    for (std::size_t j = 0; j < _COLUMNS; ++j)
+    {
+      if ( _map[i][j] != _player_one.letterplaying && _map[i][j] != _player_two.letterplaying )
+      { 
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
 
 TicTacToe::Player& TicTacToe::whoseTurn() 
 {
@@ -218,4 +261,3 @@ std::ostream& operator<<(std::ostream& os, const TicTacToe::Player& plr)
   std::cout << plr.letterplaying;
   return os;
 }
-

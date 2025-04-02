@@ -1,8 +1,6 @@
 #ifndef TICTACTOE_H
 #define TICTACTOE_H
 
-#include <vector>
-
 class TicTacToe {
   public: 
 
@@ -30,6 +28,7 @@ class TicTacToe {
     void PlayTurn(const Player& plr);
     Player& whoseTurn();
     void PrintMap() const;
+    bool CheckForTie() const; 
     void InitPlayers();
     void UpdateMap(const std::size_t & pick);
 
