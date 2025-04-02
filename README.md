@@ -12,13 +12,10 @@ Table of Contents
 - [Credits](#credits)
 
 ## Overview
-This is a console-based Tic-Tac-Toe game where two players take turns choosing positions on a 3x3 grid...
-
-
-Overview
 
 This is a console-based Tic-Tac-Toe game where two players take turns choosing positions on a 3x3 grid. The game determines the winner when a player successfully places three of their symbols in a row, column, or diagonal.
-Files Included
+
+### Files Included
 
     tictactoe.h – Header file defining the TicTacToe class.
 
@@ -26,7 +23,7 @@ Files Included
 
     main.cpp – The entry point that initializes and runs the game.
 
-Compilation & Execution
+### Compilation & Execution
 Using g++
 
 To compile and run the game:
@@ -39,7 +36,7 @@ Using MinGW (Windows)
 g++ main.cpp tictactoe.cpp -o tic_tac_toe.exe
 tic_tac_toe.exe
 
-Gameplay
+### Gameplay
 
     Players choose a character to represent them (e.g., 'X' or 'O').
 
@@ -51,7 +48,7 @@ Gameplay
 
     The game announces the winner or a tie.
 
-Features
+### Features
 
     Two-player mode.
 
@@ -63,7 +60,7 @@ Features
 
     Console-based UI.
 
-Known Issues
+### Known Issues
 
     The game currently does not handle detecting ties (i.e., when the board is full without a winner).
 
@@ -71,5 +68,5 @@ Known Issues
 
 Credits
 
-Developed by: [Your Name]
+Developed by: Omar Arias
 Language: C++
