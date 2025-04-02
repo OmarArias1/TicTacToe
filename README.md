@@ -66,7 +66,7 @@ tic_tac_toe.exe
 
     Some input handling (like non-numeric values) may need improvements.
 
-Credits
+### Credits
 
 Developed by: Omar Arias
 Language: C++
